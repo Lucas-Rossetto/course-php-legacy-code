@@ -1,57 +1,21 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: lucas
+ * Date: 30/04/19
+ * Time: 11:34
+ */
 declare(strict_types=1);
 
-namespace models;
+namespace repository;
 
 use core\Routing;
 
-class Users
+class UserRepository
 {
-    public $id = null;
-    public $firstname;
-    public $lastname;
-    public $email;
-    public $pwd;
-    public $role = 1;
-    public $status = 0;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
-    public function setFirstname($firstname): string
-    {
-        $this->firstname = ucwords(strtolower(trim($firstname)));
-    }
-
-    public function setLastname($lastname): string
-    {
-        $this->lastname = strtoupper(trim($lastname));
-    }
-
-    public function setEmail($email): string
-    {
-        $this->email = strtolower(trim($email));
-    }
-
-    public function setPwd($pwd): string
-    {
-        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
-    }
-
-    public function setRole($role): string
-    {
-        $this->role = $role;
-    }
-
-    public function setStatus($status): string
-    {
-        $this->status = $status;
-    }
-
-    /*public function getRegisterForm(): array
+    public function getRegisterForm(): array
     {
         return [
             'config' => [
@@ -107,5 +71,6 @@ class Users
                     'error' => 'Veuillez préciser un mot de passe',],
             ],
         ];
-    }*/
+    }
+
 }
