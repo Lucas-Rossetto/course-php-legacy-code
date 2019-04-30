@@ -1,12 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace controllers;
+
 use models\Users;
 use core\View;
 use core\Validator;
 
 class UsersController
 {
+
+    private $user;
+
+    public function __construct(Users $user)
+    {
+        $this->user = $user;
+    }
+
     public function defaultAction()
     {
         echo 'users default';
@@ -26,7 +37,7 @@ class UsersController
         $user = new Users();
         $form = $user->getRegisterForm();
         $method = strtoupper($form['config']['method']);
-        $data = $GLOBALS['_'.$method];
+        $data = $GLOBALS['_' . $method];
 
         if ($_SERVER['REQUEST_METHOD'] == $method && !empty($data)) {
             $validator = new Validator($form, $data);
@@ -51,13 +62,13 @@ class UsersController
         $form = $user->getLoginForm();
 
         $method = strtoupper($form['config']['method']);
-        $data = $GLOBALS['_'.$method];
+        $data = $GLOBALS['_' . $method];
         if ($_SERVER['REQUEST_METHOD'] == $method && !empty($data)) {
             $validator = new Validator($form, $data);
             $form['errors'] = $validator->errors;
 
             if (empty($errors)) {
-                $token = md5(substr(uniqid().time(), 4, 10).'mxu(4il');
+                $token = md5(substr(uniqid() . time(), 4, 10) . 'mxu(4il');
                 // TODO: connexion
             }
         }

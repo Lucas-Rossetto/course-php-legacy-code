@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace core;
 
 class Routing
@@ -20,7 +21,7 @@ class Routing
             return ['c' => null, 'a' => null, 'cPath' => null];
         }
 
-        return ['c' => '\\controllers\\'.$c, 'a' => $a, 'cPath' => $cPath];
+        return ['c' => $c, 'a' => $a, 'cPath' => $cPath];
     }
 
     public static function getSlug($c, $a)
