@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace controllers;
 
-use interfaces\UserInterface;
-use models\Users;
 use core\View;
 use core\Validator;
+use interfaces\UserInterface;
+use models\Users;
 use repository\UserRepository;
 
 class UsersController extends UserRepository
@@ -20,7 +20,7 @@ class UsersController extends UserRepository
         $this->user = $user;
     }
 
-    public function defaultAction()
+    public function defaultAction() : string
     {
         echo 'users default';
     }

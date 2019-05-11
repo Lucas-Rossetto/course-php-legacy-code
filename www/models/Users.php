@@ -18,10 +18,7 @@ class Users implements UserInterface
         $this->user = $user;
     }
 
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user): void
+    public function setUser($user): string
     {
         $this->user = $user;
     }

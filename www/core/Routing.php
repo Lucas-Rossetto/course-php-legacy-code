@@ -10,10 +10,10 @@ class Routing
     public static function getRoute($slug)
     {
         $routes = yaml_parse_file(self::$routeFile);
-        if (empty($routes[$slug]['controller']) || empty($routes[$slug]['action'])) {
-            die('Il y a une erreur dans le fichier routes.yml');
-        }
         if (isset($routes[$slug])) {
+            if (empty($routes[$slug]['controller']) || empty($routes[$slug]['action'])) {
+                die('Il y a une erreur dans le fichier routes.yml');
+            }
             $c = ucfirst($routes[$slug]['controller']).'Controller';
             $a = $routes[$slug]['action'].'Action';
             $cPath = 'controllers/'.$c.'.class.php';
