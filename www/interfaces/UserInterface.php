@@ -12,6 +12,11 @@ namespace interfaces;
 
 interface UserInterface {
 
-
+     public function setEmail($email);
+     public function setPwd($pwd);
+     public function setRole($role);
+     public function setStatus($status);
+     public function setIdentity($identity);
+     public function setId($id);
 
 }

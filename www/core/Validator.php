@@ -16,7 +16,7 @@ class Validator
         foreach ($config['data'] as $name => $info) {
             if (!isset($data[$name])) {
                 die('Tentative : faille XSS');
-            } else {
+            }
                 if (($info['required'] ?? false) && !self::notEmpty($data[$name])) {
                     $this->errors[] = $info['error'];
                 }
@@ -35,12 +35,12 @@ class Validator
 
                 if (isset($info['confirm']) && $data[$name] != $data[$info['confirm']]) {
                     $this->errors[] = $info['error'];
-                } elseif ('password' == $info['type'] && !self::checkPassword($data[$name])) {
+                }
+                if ('password' == $info['type'] && !self::checkPassword($data[$name])) {
                     $this->errors[] = $info['error'];
                 }
             }
         }
-    }
 
     public static function notEmpty($string)
     {
