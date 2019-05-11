@@ -10,12 +10,12 @@ use core\View;
 use core\Validator;
 use repository\UserRepository;
 
-class UsersController
+class UsersController extends UserRepository
 {
 
     private $user;
 
-    public function __construct(\UserInterface $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -36,7 +36,7 @@ class UsersController
 
     public function saveAction()
     {
-        $user = new Users();
+        $user = new Users(Users::class);
         $form = $user->getRegisterForm();
         $method = strtoupper($form['config']['method']);
         $data = $GLOBALS['_' . $method];
@@ -46,9 +46,7 @@ class UsersController
             $form['errors'] = $validator->errors;
 
             if (empty($form['errors'])) {
-                $user->setIdentity($data['identity']);
-                $user->setEmail($data['email']);
-                $user->setPwd($data['pwd']);
+                $user->setUser($data['user']);
             }
         }
 
@@ -58,7 +56,7 @@ class UsersController
 
     public function loginAction()
     {
-        $user = new Users();
+        $user = new Users(Users::class);
         $form = $user->getLoginForm();
 
         $method = strtoupper($form['config']['method']);

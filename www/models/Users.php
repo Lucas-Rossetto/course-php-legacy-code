@@ -10,47 +10,63 @@ use interfaces\UserInterface;
 
 class Users implements UserInterface
 {
-    public $id;
-    public $identity;
-    public $email;
-    public $pwd;
-    public $role;
-    public $status;
 
-    public function __construct($identity , $email ,$pwd)
+    public $user;
+
+    public function __construct($user)
     {
-        $this->identity = $identity;
-        $this->email = $email;
-        $this->pwd = $pwd;
+        $this->user = $user;
     }
 
-    public function setEmail($email): string
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
     {
-        $this->email = strtolower(trim($email));
+        $this->user = $user;
     }
 
-    public function setPwd($pwd): string
-    {
-        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
-    }
+    /* public $id;
+     public $identity;
+     public $email;
+     public $pwd;
+     public $role;
+     public $status;
 
-    public function setRole($role): string
-    {
-        $this->role = $role;
-    }
+     public function __construct($identity , $email ,$pwd)
+     {
+         $this->identity = $identity;
+         $this->email = $email;
+         $this->pwd = $pwd;
+     }
 
-    public function setStatus($status): string
-    {
-        $this->status = $status;
-    }
+     public function setEmail($email): string
+     {
+         $this->email = strtolower(trim($email));
+     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
+     public function setPwd($pwd): string
+     {
+         $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+     }
 
-    public function setIdentity($identity){
-        $this->identity = $identity;
-    }
+     public function setRole($role): string
+     {
+         $this->role = $role;
+     }
+
+     public function setStatus($status): string
+     {
+         $this->status = $status;
+     }
+
+     public function setId($id)
+     {
+         $this->id = $id;
+     }
+
+     public function setIdentity($identity){
+         $this->identity = $identity;
+     }*/
 }
 
