@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace controllers;
 
+use interfaces\UserInterface;
 use models\Users;
 use core\View;
 use core\Validator;
+use repository\UserRepository;
 
 class UsersController
 {
@@ -44,11 +46,9 @@ class UsersController
             $form['errors'] = $validator->errors;
 
             if (empty($form['errors'])) {
-                $user->setFirstname($data['firstname']);
-                $user->setLastname($data['lastname']);
+                $user->setIdentity($data['identity']);
                 $user->setEmail($data['email']);
                 $user->setPwd($data['pwd']);
-                $user->save();
             }
         }
 

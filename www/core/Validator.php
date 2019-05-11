@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace core;
 
 class Validator
@@ -17,30 +18,30 @@ class Validator
             if (!isset($data[$name])) {
                 die('Tentative : faille XSS');
             }
-                if (($info['required'] ?? false) && !self::notEmpty($data[$name])) {
-                    $this->errors[] = $info['error'];
-                }
+            if (($info['required'] ?? false) && !self::notEmpty($data[$name])) {
+                $this->errors[] = $info['error'];
+            }
 
-                if (isset($info['minlength']) && !self::minLength($data[$name], $info['minlength'])) {
-                    $this->errors[] = $info['error'];
-                }
+            if (isset($info['minlength']) && !self::minLength($data[$name], $info['minlength'])) {
+                $this->errors[] = $info['error'];
+            }
 
-                if (isset($info['maxlength']) && !self::maxLength($data[$name], $info['maxlength'])) {
-                    $this->errors[] = $info['error'];
-                }
+            if (isset($info['maxlength']) && !self::maxLength($data[$name], $info['maxlength'])) {
+                $this->errors[] = $info['error'];
+            }
 
-                if ('email' == $info['type'] && !self::checkEmail($data[$name])) {
-                    $this->errors[] = $info['error'];
-                }
+            if ('email' == $info['type'] && !self::checkEmail($data[$name])) {
+                $this->errors[] = $info['error'];
+            }
 
-                if (isset($info['confirm']) && $data[$name] != $data[$info['confirm']]) {
-                    $this->errors[] = $info['error'];
-                }
-                if ('password' == $info['type'] && !self::checkPassword($data[$name])) {
-                    $this->errors[] = $info['error'];
-                }
+            if (isset($info['confirm']) && $data[$name] != $data[$info['confirm']]) {
+                $this->errors[] = $info['error'];
+            }
+            if ('password' == $info['type'] && !self::checkPassword($data[$name])) {
+                $this->errors[] = $info['error'];
             }
         }
+    }
 
     public static function notEmpty($string)
     {
