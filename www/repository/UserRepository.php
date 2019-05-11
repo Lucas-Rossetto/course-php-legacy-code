@@ -13,8 +13,6 @@ use core\Routing;
 
 class UserRepository
 {
-
-
     public function getRegisterForm(): array
     {
         return [

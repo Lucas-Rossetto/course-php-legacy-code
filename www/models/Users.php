@@ -4,31 +4,23 @@ declare(strict_types=1);
 
 namespace models;
 
-use core\Routing;
+/*use core\Routing;*/
+use ValueObject\Identity;
 
 class Users
 {
-    public $id = null;
-    public $firstname;
-    public $lastname;
+    public $id;
+    public $identity;
     public $email;
     public $pwd;
     public $role = 1;
     public $status = 0;
 
-    public function __construct()
+    public function __construct($identity , $email ,$pwd)
     {
-        parent::__construct();
-    }
-
-    public function setFirstname($firstname): string
-    {
-        $this->firstname = ucwords(strtolower(trim($firstname)));
-    }
-
-    public function setLastname($lastname): string
-    {
-        $this->lastname = strtoupper(trim($lastname));
+        $this->identity = $identity;
+        $this->email = $email;
+        $this->pwd = $pwd;
     }
 
     public function setEmail($email): string
@@ -51,6 +43,10 @@ class Users
         $this->status = $status;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     /*public function getRegisterForm(): array
     {
         return [
@@ -109,3 +105,4 @@ class Users
         ];
     }*/
 }
+

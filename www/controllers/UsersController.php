@@ -13,7 +13,7 @@ class UsersController
 
     private $user;
 
-    public function __construct(Users $user)
+    public function __construct(\UserInterface $user)
     {
         $this->user = $user;
     }
@@ -25,8 +25,8 @@ class UsersController
 
     public function addAction()
     {
-        $user = new Users();
-        $form = $user->getRegisterForm();
+
+        $form = $this->user->getRegisterForm();
 
         $v = new View('addUser', 'front');
         $v->assign('form', $form);
@@ -43,7 +43,7 @@ class UsersController
             $validator = new Validator($form, $data);
             $form['errors'] = $validator->errors;
 
-            if (empty($errors)) {
+            if (empty($form['errors'])) {
                 $user->setFirstname($data['firstname']);
                 $user->setLastname($data['lastname']);
                 $user->setEmail($data['email']);

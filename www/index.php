@@ -8,8 +8,8 @@ function myAutoloader($class)
 
     $classname = substr($class, strpos($class , '\\') + 1);
     // $classController = 'controllers'.$classname.'.class.php';
-    $classPath = 'core/'.$classname.'.class.php';
-    $classModel = 'models/'.$classname.'.class.php';
+    $classPath = 'core/'.$classname.'.php';
+    $classModel = 'models/'.$classname.'.php';
     if (file_exists($classPath)) {
         include $classPath;
     } elseif (file_exists($classModel)) {

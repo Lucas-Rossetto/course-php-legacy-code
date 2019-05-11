@@ -11,7 +11,7 @@ use controllers\UsersController;
 use models\Users;
 
 return [
-    Users::class => function ($container) {
+    UserInterface::class => function ($container) {
         $host = $container['config']['database']['host'];
         $driver = $container['config']['database']['driver'];
         $name = $container['config']['database']['name'];
@@ -21,7 +21,7 @@ return [
         return new Users($driver, $host, $name, $user, $password);
     },
     UsersController::class => function ($container) {
-        $userModel = $container[Users::class]($container);
+        $userModel = $container[UserInterface::class]($container);
 
         return new UsersController($userModel);
 

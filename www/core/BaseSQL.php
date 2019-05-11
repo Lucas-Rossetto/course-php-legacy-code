@@ -8,10 +8,10 @@ class BaseSQL
     private $pdo;
     private $table;
 
-    public function __construct()
+    public function __construct($driver,$host,$name,$user,$password)
     {
         try {
-            $this->pdo = new \PDO(DBDRIVER.':host='.DBHOST.';dbname='.DBNAME, DBUSER, DBPWD);
+            $this->pdo = new \PDO($driver.':host='.$host.';dbname='.$name, $user, $password);
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\Exception $e) {
             die('Erreur SQL : '.$e->getMessage());
@@ -20,11 +20,6 @@ class BaseSQL
         $this->table = get_called_class();
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-        $this->getOneBy(['id' => $id], true);
-    }
 
     /**
      * @param array $where  the where clause
